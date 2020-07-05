@@ -2,8 +2,144 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
 
+/* Reset */
+
+* {
+    box-sizing: border-box;
+}
+
 /* Core Styles */
 
 body {
+    align-items: center;
+    background-image: linear-gradient(
+        0deg,
+        rgba(247,247,247,1) 24%,
+        rgba(252,221,221,1) 92%
+    );
+    display: flex;
+    flex-direction: column;
     font-family: 'Muli', sans-serif;
+    height: 100vh;
+    justify-content: center;
+    margin: 0px;
+}
+
+.music-container {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0px 20px 20px 0px rgba(252,169,169,0.6);
+    display: flex;
+    margin: 100px 0px;
+    padding: 20px 30px;
+    position: relative;
+    z-index: 10;
+}
+
+.img-container {
+    position: relative;
+    width: 110px;
+}
+
+.img-container::after {
+    bottom: 100%;
+    content: '';
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    height: 20px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 50%);
+    width: 20px;
+}
+
+.img-container img {
+    animation: rotate 3s linear infinite;
+    animation-play-state: paused;
+    border-radius: 50%;
+    bottom: 0px;
+    height: 110px;
+    left: 0px;
+    object-fit: cover;
+    position: absolute;
+    width: inherit;     
+}
+
+.music-container.play .img-container img {
+    animation-play-state: running;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.navigation {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+.action-btn {
+    background-color: #FFFFFF;
+    border: none;
+    color: #DFDBDF;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0px 20px;
+    padding: 10px;
+}
+
+.action-btn.action-btn-big {
+    color: #CDC2D0;
+    font-size: 30px;
+}
+
+.action-btn:focus {
+    outline: 0;
+}
+
+.music-info {
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 15px 15px 0px0px;
+    left: 20px;
+    opacity: 0;
+    padding: 10px 10px 10px 150px;
+    position: absolute;
+    top: 0px;
+    transform: translateY(0%);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    width: calc(100% - 40px);
+    z-index: 0;
+}
+
+.music-container.play .music-info {
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+.music-info h4 {
+    margin: 0;
+}
+
+.progress-container {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 4px;
+    margin: 10px 0px;
+    width: 100%;
+}
+
+.progress {
+    background-color: #FE8DAA;
+    border-radius: 5px;
+    height: 100%;
+    transition: width 0.1s linear;
+    width: 0%;
 }
